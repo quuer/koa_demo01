@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.1",
     "koa": "^2.13.4",
     "koa-body": "^5.0.0",
     "koa-json-error": "^3.1.2",

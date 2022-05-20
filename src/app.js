@@ -1,23 +1,11 @@
-// 1.导入koa
 const Koa = require('koa')
-// 注册koa-body中间件：解析请求体中的参数，挂载到ctx.request.body中
-const KoaBody = require('koa-body')
-const error = require('koa-json-error')
-// 2.实例化app对象
 const app = new Koa()
+const { APP_PORT } = require('./config/config.default')
+app.use((ctx, next) => {
+  ctx.body = 'api is comming'
+})
+app.listen(APP_PORT, () => {
+  console.log(`◀◀◀http server is on http://127.0.0.1:${APP_PORT}`)
+})
 
-// 使用koa-body插件
-app.use(KoaBody())
-app.use(error())
 
-// 3.导入抽离的路由
-const userRoute = require('./router/user.route')
-
-// 4.注册路由中间件
-app.use(userRoute.routes()).use(userRoute.allowedMethods())
-
-// 启动服务
-app.listen(3000, () => {
-    console.log('http server is on http://localhost:3000')
-  }
-)
