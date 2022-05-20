@@ -3,16 +3,15 @@ class UserController {
   // 用户注册
   async register(ctx, next) {
     // 1.获取数据
-    const {user_name,password} = ctx.request.body
+    const { user_name, password } = ctx.request.body
     // 2.操作数据库
-   const res = await createUser(user_name,password)
+    const res = await createUser(user_name, password)
     // 3.返回数据
     ctx.body = res
   }
 
   // 用户登录
   async login(ctx, next) {
-    console.log(ctx.request.body, '◀◀◀ctx.request.body')
     ctx.body = ctx.request.body
   }
 }
