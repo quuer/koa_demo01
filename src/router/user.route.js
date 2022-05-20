@@ -1,18 +1,9 @@
 const Router = require('koa-router')
+const { register, login } = require('../controller/user.controller')
 const router = new Router({ prefix: '/users' })
-const db = [
-  { id: 1, name: '小王' },
-  { id: 2, name: '小红' },
-  { id: 3, name: '小明' },
-  { id: 4, name: '小白' }
-]
-router.post('/', async (ctx, next) => {
-  ctx.body = db
-})
 
-router.post('/all', async (ctx, next) => {
-  ctx.body = JSON.stringify(ctx.request.body)
-})
+router.post('/register', register)
 
+router.post('/login', login)
 
 module.exports = router
