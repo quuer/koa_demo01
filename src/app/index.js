@@ -1,16 +1,26 @@
+const path = require('path')
 const Koa = require('koa')
 const koaBody = require('koa-body')
+const koaStatic = require('koa-static')
 const app = new Koa()
 const errHandler = require('./errHandler')
 const router = require('../router/index')
-// const userRouter = require('../router/user.route')
-// const goodsRouter = require('../router/goods.route')
+
+console.log(path.resolve(__dirname, '../upload'))
 
 // 在路由处理之前注册koaBody
-app.use(koaBody())
+app.use(
+  koaBody({
+    // 配置文件上传参数
+    multipart: true,
+    formidable: {
+      uploadDir: path.resolve(__dirname, '../upload'),
+      // uploadDir: './src/upload', 不推荐使用相对路径
+      keepExtensions: true
+    }
+  }))
+app.use(koaStatic(path.resolve(__dirname, '../upload')))
 app.use(router.routes()).use(router.allowedMethods())
-// app.use(userRouter.routes()).use(userRouter.allowedMethods())
-// app.use(goodsRouter.routes()).use(goodsRouter.allowedMethods())
 
 // 统一的错误处理
 app.on('error', errHandler)

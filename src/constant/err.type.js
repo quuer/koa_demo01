@@ -53,5 +53,10 @@ module.exports = {
     code: '10011',
     message: '无管理权限',
     result: null
+  },
+  fileUploadErr: {
+    code: '10012',
+    message: '文件上传错误',
+    result: null
   }
 }
