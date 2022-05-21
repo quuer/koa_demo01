@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken')
-const { createUser, getUserInfo, updateById } = require('../service/use.service')
+const { createUser, getUserInfo, updateById } = require('../service/user.service')
 const { userRegisterErr, getUserInfoErr, changePasswordErr } = require('../constant/err.type')
 const { JWT_SECRET } = require('../config/config.default')
 class UserController {

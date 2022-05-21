@@ -5,7 +5,6 @@ const { tokenExpiredErr, invalidTokenErr, hasNoAdminPermission } = require('../c
 const auth = async (ctx, next) => {
   const { authorization } = ctx.request.header
   const token = authorization.replace('Bearer ', '')
-  console.log(token, '◀◀◀Authorization')
   try {
     // 返回的user中包含了jwt.sign中的payload内容，即包含{id,user_name,is_admin}
     const user = jwt.verify(token, JWT_SECRET)
@@ -21,8 +20,6 @@ const auth = async (ctx, next) => {
         return ctx.app.emit('error', invalidTokenErr, ctx)
     }
   }
-
-  ctx.body = '修改成功'
   await next()
 }
 

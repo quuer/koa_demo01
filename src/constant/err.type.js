@@ -58,5 +58,30 @@ module.exports = {
     code: '10012',
     message: '文件上传错误',
     result: null
+  },
+  goodsFormatErr: {
+    code: '10013',
+    message: '参数类型错误',
+    result: null
+  },
+  publishGoodsErr: {
+    code: '10014',
+    message: '商品发布错误',
+    result: null
+  },
+  updateGoodsErr: {
+    code: '10015',
+    message: '商品更新错误',
+    result: null
+  },
+  invalidGoodsErr: {
+    code: '10016',
+    message: '无效的商品id',
+    result: null
+  },
+  removeGoodsErr: {
+    code: '10016',
+    message: '商品删除错误',
+    result: null
   }
 }

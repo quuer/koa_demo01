@@ -1,6 +1,6 @@
 const User = require('../model/user.model')
 
-class UseService {
+class UserService {
   // 创建一个新用户
   async createUser(user_name, password) {
     const res = await User.create({ user_name, password })
@@ -42,10 +42,9 @@ class UseService {
     password && Object.assign(newUser, { password })
     is_admin && Object.assign(newUser, { is_admin })
     const res = await User.update(newUser, { where: whereOpt })
-    console.log(res, '◀◀◀res')
     return res[0]
   }
 
 }
 
-module.exports = new UseService()
+module.exports = new UserService()

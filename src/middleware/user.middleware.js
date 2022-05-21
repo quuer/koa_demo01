@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs')
-const { getUserInfo } = require('../service/use.service')
+const { getUserInfo } = require('../service/user.service')
 const {
   userFormatError,
   userNotExits,
