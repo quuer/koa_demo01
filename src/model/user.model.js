@@ -6,8 +6,10 @@ const User = seq.define('mall_user', {
   // 在这里定义模型属性,id会被自动创建
   user_name: {
     type: DataTypes.STRING,
+    unique:true,
     // allowNull 默认为 true
-    allowNull: false
+    allowNull: false,
+    comment:'用户名，唯一'
   },
   password: {
     type: DataTypes.STRING,
