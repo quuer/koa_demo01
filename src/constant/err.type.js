@@ -4,7 +4,7 @@ module.exports = {
     message: '用户名或密码为空',
     result: null
   },
-  isUserExits: {
+  userExits: {
     code: '10002',
     message: '用户名已存在',
     result: null
@@ -19,4 +19,34 @@ module.exports = {
     message: '获取用户信息错误',
     result: null
   },
+  userNotExits: {
+    code: '10005',
+    message: '用户名不存在',
+    result: null
+  },
+  invalidUserPassword: {
+    code: '10006',
+    message: '密码错误',
+    result: null
+  },
+  tokenExpiredErr: {
+    code: '10007',
+    message: 'token令牌已过期',
+    result: null
+  },
+  invalidTokenErr: {
+    code: '10008',
+    message: '无效的token令牌',
+    result: null
+  },
+  changePasswordErr: {
+    code: '10009',
+    message: '修改密码失败',
+    result: null
+  },
+  emptyPasswordErr: {
+    code: '10010',
+    message: '密码为空',
+    result: null
+  }
 }
