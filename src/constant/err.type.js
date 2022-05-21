@@ -48,5 +48,10 @@ module.exports = {
     code: '10010',
     message: '密码为空',
     result: null
+  },
+  hasNoAdminPermission: {
+    code: '10011',
+    message: '无管理权限',
+    result: null
   }
 }
