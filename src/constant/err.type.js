@@ -86,6 +86,12 @@ module.exports = {
   },
   cartsFormatErr: {
     code: '10017',
+    message: '添加商品参数错误',
+    result: null
+  }
+  ,
+  addCartErr: {
+    code: '10018',
     message: '添加商品到购物车错误',
     result: null
   }
