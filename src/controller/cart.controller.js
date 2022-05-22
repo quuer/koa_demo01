@@ -1,5 +1,5 @@
-const { createOrupdate, findAll } = require('../service/cart.service')
-const { addCartErr, findAllCartErr } = require('../constant/err.type')
+const { createOrupdate, findAll, updateCarts } = require('../service/cart.service')
+const { addCartErr, findAllCartErr, updateCartErr, updateCartParamsErr } = require('../constant/err.type')
 
 class CartController {
 
@@ -8,7 +8,6 @@ class CartController {
     try {
       const user_id = ctx.state.user.id
       const { goods_id } = ctx.request.body
-      console.log(user_id, goods_id, '◀◀◀user_id, goods_id')
       const res = await createOrupdate(user_id, goods_id)
       ctx.body = {
         code: 0,
@@ -36,6 +35,31 @@ class CartController {
     catch (e) {
       ctx.app.emit('error', findAllCartErr, ctx)
     }
+  }
+
+  // 更新购物车
+  async update(ctx, next) {
+    try {
+      const { id } = ctx.request.params
+      const { number, selected } = ctx.request.body
+      if (number === undefined && selected === undefined) {
+        return ctx.app.emit('error', updateCartParamsErr, ctx)
+      }
+      const res = await updateCarts({ id, number, selected })
+      if (res) {
+        return ctx.body = {
+          code: 0,
+          message: '更新购物车成功'
+        }
+      }
+      else {
+        return ctx.app.emit('error', updateCartErr, ctx)
+      }
+    }
+    catch (e) {
+      return ctx.app.emit('error', updateCartErr, ctx)
+    }
+
   }
 }
 

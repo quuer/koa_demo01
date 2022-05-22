@@ -13,16 +13,13 @@ class CartService {
         }
       }
     })
-    console.log(res, '◀◀◀res')
     if (res) {
       // 若存有记录
       await res.increment('number')
       return await res.reload()
     }
     else {
-      console.log(user_id, goods_id, '◀◀◀user_id')
       const res = await Cart.create({ user_id, goods_id, number: 1, selected: false })
-      console.log(res, '◀◀◀res2')
       return res
     }
   }
@@ -30,7 +27,6 @@ class CartService {
   async findAll(page, pageSize, user_id) {
     const offset = (page * 1 - 1) * pageSize
     const limit = pageSize * 1
-    console.log(offset, limit, user_id, '◀◀◀offset,limit')
     const { count, rows } = await Cart.findAndCountAll({
       attributes: ['id', 'number', 'selected'],
       offset,
@@ -46,7 +42,6 @@ class CartService {
         }
       }
     })
-    console.log(count, rows, '◀◀◀count,rows')
     return {
       page: page * 1,
       pageSize,
@@ -54,6 +49,13 @@ class CartService {
       totalPages: Math.ceil(count / (pageSize * 1)),
       list: rows.map(i => i.dataValues)
     }
+  }
+
+  async updateCarts(params) {
+    const { id, number, selected } = params
+    const res = await Cart.update({ number, selected }, { where: { id } })
+    console.log(res, '◀◀◀res')
+    return res[0] > 0
   }
 }
 

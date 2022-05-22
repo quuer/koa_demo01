@@ -98,5 +98,15 @@ module.exports = {
     code: '10019',
     message: '查询购物车列表错误',
     result: null
+  },
+  updateCartParamsErr: {
+    code: '10020',
+    message: '更新商品参数number或selected不能同时为空',
+    result: null
+  },
+  updateCartErr: {
+    code: '10021',
+    message: '更新商品错误',
+    result: null
   }
 }
