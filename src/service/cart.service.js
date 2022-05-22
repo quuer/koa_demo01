@@ -8,8 +8,7 @@ class CartService {
     const res = await Cart.findOne({
       where: {
         [Op.and]: {
-          user_id,
-          goods_id
+          user_id, goods_id
         }
       }
     })
@@ -32,8 +31,7 @@ class CartService {
       offset,
       limit,
       include: {
-        model: Goods,
-        as: 'goods_info',
+        model: Goods, as: 'goods_info',
         attributes: ['id', 'goods_name', 'goods_price', 'goods_img']
       },
       where: {
@@ -54,6 +52,30 @@ class CartService {
   async updateCarts(params) {
     const { id, number, selected } = params
     const res = await Cart.update({ number, selected }, { where: { id } })
+    console.log(res, '◀◀◀res')
+    return res[0] > 0
+  }
+
+  async removeCarts(ids) {
+    const res = await Cart.destroy({
+      where: {
+        id: {
+          [Op.in]: ids
+        }
+      }
+    })
+    console.log(res, '◀◀◀res')
+    return res > 0
+  }
+
+  async selectAllCarts(user_id, is_selectedAll) {
+    const res = await Cart.update({ selected: is_selectedAll },
+      {
+        where: {
+          user_id
+        }
+      }
+    )
     console.log(res, '◀◀◀res')
     return res[0] > 0
   }

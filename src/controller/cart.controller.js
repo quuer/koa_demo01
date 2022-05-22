@@ -1,5 +1,12 @@
-const { createOrupdate, findAll, updateCarts } = require('../service/cart.service')
-const { addCartErr, findAllCartErr, updateCartErr, updateCartParamsErr } = require('../constant/err.type')
+const { createOrupdate, findAll, updateCarts, removeCarts, selectAllCarts } = require('../service/cart.service')
+const {
+  addCartErr,
+  findAllCartErr,
+  updateCartErr,
+  updateCartParamsErr,
+  removeCartsErr,
+  selectAllCartErr
+} = require('../constant/err.type')
 
 class CartController {
 
@@ -60,6 +67,40 @@ class CartController {
       return ctx.app.emit('error', updateCartErr, ctx)
     }
 
+  }
+
+  // 删除购物车
+  async remove(ctx, next) {
+    console.log(ctx.request.body, '◀◀◀ctx.request.body')
+    const { ids } = ctx.request.body
+    const res = await removeCarts(ids)
+    if (res) {
+      ctx.body = {
+        code: 0,
+        message: '删除成功',
+        result: 1
+      }
+    }
+    else {
+      return ctx.app.emit('error', removeCartsErr, ctx)
+    }
+  }
+
+  // 全选
+  async selectAll(ctx, next) {
+    const user_id = ctx.state.user.id
+    const { is_selectedAll } = ctx.request.body
+    const res = await selectAllCarts(user_id,is_selectedAll)
+    if (res) {
+      ctx.body = {
+        code: 0,
+        message: is_selectedAll?'全选成功':'全不选成功',
+        res: 'ok'
+      }
+    }
+    else {
+      return ctx.app.emit('error', selectAllCartErr, ctx)
+    }
   }
 }
 

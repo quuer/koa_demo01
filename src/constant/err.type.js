@@ -106,7 +106,37 @@ module.exports = {
   },
   updateCartErr: {
     code: '10021',
-    message: '更新商品错误',
+    message: '更新购物车商品错误',
+    result: null
+  },
+  removeCartsErr: {
+    code: '10022',
+    message: '删除购物车商品错误',
+    result: null
+  },
+  selectAllCartErr: {
+    code: '10023',
+    message: '全选购物车商品错误',
+    result: null
+  },
+  addAddressErr: {
+    code: '10024',
+    message: '新增地址错误',
+    result: null
+  },
+  addAddressFormatErr: {
+    code: '10025',
+    message: '新增地址参数格式错误',
+    result: null
+  },
+  updateAddrErr: {
+    code: '10026',
+    message: '新增地址参数格式错误',
+    result: null
+  },
+  setDefaultAddrErr: {
+    code: '10027',
+    message: '设置默认地址错误',
     result: null
   }
 }
