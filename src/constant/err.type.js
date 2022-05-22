@@ -138,5 +138,10 @@ module.exports = {
     code: '10027',
     message: '设置默认地址错误',
     result: null
+  },
+  addOrdersFormatErr: {
+    code: '10028',
+    message: '新增订单格式错误',
+    result: null
   }
 }
