@@ -5,7 +5,15 @@ const {
   invalidGoodsErr,
   removeGoodsErr
 } = require('../constant/err.type')
-const { createGoods, updateGoods, removeGoods,restoreGoods} = require('../service/goods.service')
+const {
+  createGoods,
+  updateGoods,
+  removeGoods,
+  restoreGoods,
+  findAllGoods,
+  countGoods,
+  findAndCountAll
+} = require('../service/goods.service')
 class UserController {
   // 上传
   async upload(ctx, next) {
@@ -96,6 +104,17 @@ class UserController {
     }
   }
 
+  async findAll(ctx, next) {
+    const { page = 1, pageSize = 10 } = ctx.request.query
+    // const res1 = await findAllGoods(page, pageSize)
+    // const res2= await countGoods()
+    const res = await findAndCountAll(page, pageSize)
+    ctx.body = {
+      code: 0,
+      message: '商品列表获取成功',
+      result: res
+    }
+  }
 }
 
 module.exports = new UserController()
