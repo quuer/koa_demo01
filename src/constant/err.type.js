@@ -83,5 +83,10 @@ module.exports = {
     code: '10016',
     message: '商品删除错误',
     result: null
+  },
+  cartsFormatErr: {
+    code: '10017',
+    message: '添加商品到购物车错误',
+    result: null
   }
 }

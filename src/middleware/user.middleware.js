@@ -71,5 +71,4 @@ module.exports = {
   verifyUser,
   cryptPassword,
   verifyLogin
-
 }
