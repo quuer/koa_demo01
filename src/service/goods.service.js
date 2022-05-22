@@ -42,14 +42,12 @@ class GoodsService {
 
   // 聚合查询
   async findAndCountAll(page, pageSize) {
-    const offset = (page - 1) * pageSize
-    console.log(typeof page, typeof pageSize, '◀◀◀typeof page,typeof pageSize')
+    const offset = (page * 1 - 1) * pageSize
     const limit = pageSize * 1
-    console.log(offset, limit, '◀◀◀offset,limit')
     const { count, rows } = await Goods.findAndCountAll({ offset, limit })
     return {
       page: page * 1,
-      pageSize: pageSize * 1,
+      pageSize: limit,
       totals: count,
       totalPages: Math.ceil(count / (pageSize * 1)),
       list: rows.map(i => i.dataValues)

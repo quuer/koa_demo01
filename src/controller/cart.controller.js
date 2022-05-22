@@ -1,5 +1,5 @@
-const { createOrupdate } = require('../service/cart.service')
-const { addCartErr } = require('../constant/err.type')
+const { createOrupdate, findAll } = require('../service/cart.service')
+const { addCartErr, findAllCartErr } = require('../constant/err.type')
 
 class CartController {
 
@@ -21,6 +21,22 @@ class CartController {
     }
   }
 
+  // 获得购物车列表
+  async findAll(ctx, next) {
+    try {
+      const { page = 0, pageSize = 10 } = ctx.request.query
+      const user_id = ctx.state.user.id
+      const res = await findAll(page, pageSize, user_id)
+      ctx.body = {
+        code: 0,
+        message: '获取购物车列表成功',
+        result: res
+      }
+    }
+    catch (e) {
+      ctx.app.emit('error', findAllCartErr, ctx)
+    }
+  }
 }
 
 module.exports = new CartController()
