@@ -2,7 +2,7 @@ const Router = require('koa-router')
 const { auth } = require('../middleware/auth.middleware')
 const { add, findAll, update, remove, setDefaultAddr } = require('../controller/addr.controller')
 const { validator } = require('../middleware/addr.middleware')
-const router = new Router({ prefix: '/address' })
+const router = new Router({ prefix: '/api/address' })
 
 // 新增地址
 router.post('/', auth, validator({

@@ -1,6 +1,6 @@
 const Router = require('koa-router')
 const { auth } = require('../middleware/auth.middleware')
-const router = new Router({ prefix: '/orders' })
+const router = new Router({ prefix: '/api/orders' })
 const { add, findAll, update } = require('../controller/orders.controller')
 const { validator } = require('../middleware/orders.middleware')
 

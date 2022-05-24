@@ -2,7 +2,7 @@ const Router = require('koa-router')
 const { auth } = require('../middleware/auth.middleware')
 const { validator } = require('../middleware/cart.middleware')
 const { add, findAll, update, remove, selectAll } = require('../controller/cart.controller.js')
-const router = new Router({ prefix: '/carts' })
+const router = new Router({ prefix: '/api/carts' })
 
 // 添加进购物车
 router.post('/add', auth, validator({ goods_id: { type: 'number', required: true } }), add)
